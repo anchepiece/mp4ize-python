@@ -7,8 +7,8 @@ This is the current development version of [mp4ize-python](http://github.com/anc
 Original Work
 ====================
 This is a python implementation of the mp4ize ruby script available here:
-[http://thomer.com/howtos/mp4ize]
-Copyright (C) 2007-2010 Thomer M. Gil [http://thomer.com/]
+(http://thomer.com/howtos/mp4ize)
+Copyright (C) 2007-2010 Thomer M. Gil (http://thomer.com/)
 
 mp4ize python
 ====================
