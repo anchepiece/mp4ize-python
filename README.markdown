@@ -10,6 +10,8 @@ This is a python implementation of the mp4ize ruby script available here:
 
 [http://thomer.com/howtos/mp4ize](http://thomer.com/howtos/mp4ize)
 
+[Convert any video file for an iPod or iPhone](http://thomer.com/howtos/ipod_video.html)
+
 Copyright (C) 2007-2010 [Thomer M. Gil](http://thomer.com/)
 
 
