@@ -4,6 +4,12 @@ Welcome!
 ====================
 This is the current development version of [mp4ize-python](http://github.com/anchepiece/mp4ize-python/).
 
+Original Work
+====================
+This is a python implementation of the mp4ize ruby script available here:
+    http://thomer.com/howtos/mp4ize
+    Copyright (C) 2007-2010 Thomer M. Gil [http://thomer.com/]
+
 mp4ize python
 ====================
 This program converts video files to mp4, suitable to be played on an iPod
