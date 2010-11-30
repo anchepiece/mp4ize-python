@@ -262,7 +262,7 @@ def process_files(files, options):
             if pattern.search(output):
                 # lets try again while forcing an aspect ratio
                 print 'Invalid pixel aspect ratio, running again with source ratio'
-                cmd = '/usr/bin/ffmpeg -i "{0}" {1} -bufsize {2} -s {3}x{4} -{5} {6} -{7} {6} -aspect {11} -ab {8} -b {9} {10}'.format(
+                cmd = '/usr/bin/ffmpeg -i "{0}" {1} -bufsize {2} -s {3}x{4} -{5} {6} -{7} {6} -aspect {11} -ab {8} -b {9} "{10}"'.format(
                     f, DEFAULT_ARGS, DEFAULT_BUFSIZE, width, height, padarg1, pad, padarg2, options.audio, options.video, outfile, aspect)
 
                 print cmd
