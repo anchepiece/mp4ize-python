@@ -20,6 +20,13 @@ mp4ize python
 This program converts video files to mp4, suitable to be played on an iPod
 or an iPhone. It is careful about maintaining the proper aspect ratio.
 
+Requirements
+====================
+ - python
+ - python-argparse
+ - ffmpeg
+ - libavcodec-extra-52
+
 Usage
 ====================
 A simple script to provide a simple, easy to use interface to calculate a span
