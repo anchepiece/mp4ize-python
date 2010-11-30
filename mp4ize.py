@@ -105,7 +105,7 @@ if sys.platform == 'linux2':
 
 ##############################################################################
 
-import os, os.path, sys, socket, time, argparse, email, mailbox
+import os, os.path, sys, socket, time, argparse, shlex, email, mailbox 
 from subprocess import *
 import fcntl, select
 
@@ -179,14 +179,14 @@ def process_files(files, options):
         print '    processing: %s' % f    
         outfile = os.path.splitext(os.path.basename(f))[0] + '.mp4'
         outfile = os.path.join(options.outdir, outfile)
-        print '    outfile:', outfile    
-                
+        print '    outfile:', outfile        
+
         #ext = os.path.splitext(f)[1]
         #print '    {0} {1} {2}'.format(f, outfile, ext)
 
         # open the file to figure out the aspect ratio
         duration, time_f, w, h = 0.0, 0.0, 0, 0
-        cmd = '/usr/bin/ffmpeg -i %s' % f
+        cmd = '/usr/bin/ffmpeg -i "%s" ' % f
         print cmd
         print ''
         returncode, output = encode(cmd)
@@ -212,9 +212,10 @@ def process_files(files, options):
                 duration += float(m.group(3))
                 duration += float(m.group(4)) / 10                                             
             
-            print 'Got source values: w=%s h=%s duration=%s' % (w, h, duration)
+            print 'Got values from input: w=%s h=%s duration=%s' % (w, h, duration)
 
         if duration == 0 or w == 0 or h == 0:
+            print output
             print 'Error: Could not interpret file as proper video: %s' % f
             continue
 
@@ -240,7 +241,7 @@ def process_files(files, options):
 #             if val != 'y':
 #                 sys.exit(1)            
             os.remove(outfile)
-        cmd = '/usr/bin/ffmpeg -i {0} {1} -bufsize {2} -s {3}x{4} -{5} {6} -{7} {6} -ab {8} -b {9} {10}'.format(
+        cmd = '/usr/bin/ffmpeg -i "{0}" {1} -bufsize {2} -s {3}x{4} -{5} {6} -{7} {6} -ab {8} -b {9} "{10}"'.format(
             f, DEFAULT_ARGS, DEFAULT_BUFSIZE, width, height, padarg1, pad, padarg2, options.audio, options.video, outfile)
             
         print cmd
@@ -261,7 +262,7 @@ def process_files(files, options):
             if pattern.search(output):
                 # lets try again while forcing an aspect ratio
                 print 'Invalid pixel aspect ratio, running again with source ratio'
-                cmd = '/usr/bin/ffmpeg -i {0} {1} -bufsize {2} -s {3}x{4} -{5} {6} -{7} {6} -aspect {11} -ab {8} -b {9} {10}'.format(
+                cmd = '/usr/bin/ffmpeg -i "{0}" {1} -bufsize {2} -s {3}x{4} -{5} {6} -{7} {6} -aspect {11} -ab {8} -b {9} {10}'.format(
                     f, DEFAULT_ARGS, DEFAULT_BUFSIZE, width, height, padarg1, pad, padarg2, options.audio, options.video, outfile, aspect)
 
                 print cmd
@@ -293,7 +294,8 @@ def process_files(files, options):
 def encode(cmd, duration=0):
     result = ''
     time_f = 0
-    p = Popen (cmd.split(), stdout=PIPE, stderr=PIPE, shell=False)
+    args = shlex.split(cmd)
+    p = Popen (args, stdout=PIPE, stderr=PIPE, shell=False)    
 
     fcntl.fcntl(
         p.stderr.fileno(),
@@ -392,8 +394,7 @@ def main(argv):
                        help='override default width (%(default)s)')    
     parser.add_argument('-t', '--height', type=int, nargs=1, default=int(IPOD_HEIGHT),
                        help='override default height (%(default)s)' )    
-    parser.add_argument('-i', '--iphone', action='store_true',
-                       help='utilize iphone width and height (320x480)' )  
+    parser.add_argument('-i', '--iphone', action='store_true')  
       
     parser.add_argument('-o', '--outdir', metavar='dir', type=valid_dir, nargs=1, default=DEFAULT_OUTDIR,
                        help='write files to given directory')        
