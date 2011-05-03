@@ -35,8 +35,8 @@ span of time.  To illustrate the difference in time using conventional methods
 that are technically accurate.
 
     usage: mp4ize.py [-h] [--version] [-a RATE] [-b RATE] [-v] [-w WIDTH]
-                 [-t HEIGHT] [-i] [-o dir]
-                 file [file ...]
+                     [-t HEIGHT] [-i] [-4] [-o dir]
+                     file [file ...]
 
     encode videos to mp4 for an iPod or an iPhone
 
@@ -55,7 +55,8 @@ that are technically accurate.
                             override default width (320)
       -t HEIGHT, --height HEIGHT
                             override default height (240)
-      -i, --iphone          utilize iphone width and height (320x480)
+      -i, --iphone          use default iphone height and width (480x320)
+      -4, --iphone4         use default iphone4 height and width (960x640)
       -o dir, --outdir dir  write files to given directory
 
 
