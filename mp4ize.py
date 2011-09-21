@@ -370,17 +370,17 @@ def main(argv):
         help='list of file names to process')
         # setting defaults creates a value in args, 
         #   otherwise the value passed will be None
-    parser.add_argument('-a', '--audio', metavar='RATE', type=str, nargs=1, 
+    parser.add_argument('-a', '--audio', metavar='RATE', type=str, 
         default=DEFAULT_AUDIO_BITRATE,
         help='override default audio bitrate (%(default)s)' )    
-    parser.add_argument('-b', '--video', metavar='RATE', type=str, nargs=1, 
+    parser.add_argument('-b', '--video', metavar='RATE', type=str,  
         default=DEFAULT_VIDEO_BITRATE,
         help='override default video bitrate (%(default)s)' )    
     parser.add_argument('-v', '--verbose', action='store_true')   
-    parser.add_argument('-w', '--width', type=int, nargs=1, 
+    parser.add_argument('-w', '--width', type=int, 
         default=int(IPOD_WIDTH),
         help='override default width (%(default)s)')    
-    parser.add_argument('-t', '--height', type=int, nargs=1, 
+    parser.add_argument('-t', '--height', type=int, 
         default=int(IPOD_HEIGHT),
         help='override default height (%(default)s)' )
     parser.add_argument('-i', '--iphone', action='store_true', 
@@ -391,7 +391,7 @@ def main(argv):
         help='use default iphone4 height and width (%(default)s)')     
 
     parser.add_argument('-o', '--outdir', metavar='dir', type=valid_dir, 
-        nargs=1, default=DEFAULT_OUTDIR,
+        default=DEFAULT_OUTDIR,
         help='write files to given directory')        
 
     args = parser.parse_args()
