@@ -307,8 +307,8 @@ class ConvertFiles(object):
             if self.options.verbose:
               print 'Invalid pixel aspect ratio, ' + \
                 'running again with source ratio'
-              cmd = cmd.replace('-s {width}x{height}'.format(width=width, height=height), 
-                '-s {width}x{height} -aspect {aspect}'.format(width=width, height=height, aspect=aspect))
+            cmd = cmd.replace('-s {width}x{height}'.format(width=width, height=height), 
+              '-s {width}x{height} -aspect {aspect}'.format(width=width, height=height, aspect=aspect))
             continue
 
           elif "Unrecognized option 'vf'" in output:
